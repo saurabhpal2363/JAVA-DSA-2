@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class LinkedList {
+public class Questions {
     public class Node {
         int data;
         Node next;
@@ -124,20 +124,51 @@ public class LinkedList {
         System.out.println("null");
     }
 
+    public int iterSearch(int key) {  // O(n)
+        Node temp = head;
+        int i = 0;
+
+        while(temp != null) {
+            if(temp.data == key) {
+                return i;
+            }
+
+            temp = temp.next;
+            i++;
+        }
+
+        return -1;
+    }
+
+    public int helper(Node head, int key) {  // O(n)
+        if(head == null) {
+            return -1;
+        }
+
+        if(head.data == key) {
+            return 0;
+        }
+
+        int idx = helper(head.next, key);
+        if(idx == -1) {
+            return -1;
+        }
+
+        return idx+1;
+    }
+
+    public int recSearch(int key) {
+        return helper(head, key);
+    }
+
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-        ll.addFirst(1);
-        ll.addFirst(5);
-        ll.addLast(7);
+        Questions ll = new Questions();
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
         ll.addLast(4);
-        ll.add(2, 9);
-        System.out.println(ll.removeFirst());
-
         ll.printList();
-        System.out.println(ll.size);
 
-        ll.removeLast();
-        ll.printList();
-        System.out.println(ll.size);
+        System.out.println("Element found at idx: " + ll.recSearch(40));
     }
 }
