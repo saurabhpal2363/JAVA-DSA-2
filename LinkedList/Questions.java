@@ -161,6 +161,21 @@ public class Questions {
         return helper(head, key);
     }
 
+    public void reverse() {
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
+
     public static void main(String[] args) {
         Questions ll = new Questions();
         ll.addLast(1);
@@ -169,6 +184,8 @@ public class Questions {
         ll.addLast(4);
         ll.printList();
 
-        System.out.println("Element found at idx: " + ll.recSearch(40));
+        // System.out.println("Element found at idx: " + ll.recSearch(40));
+        ll.reverse();
+        ll.printList();
     }
 }
