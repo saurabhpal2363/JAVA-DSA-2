@@ -161,7 +161,7 @@ public class Questions {
         return helper(head, key);
     }
 
-    public void reverse() {
+    public void reverse() { // O(n)
         Node prev = null;
         Node curr = tail = head;
         Node next;
