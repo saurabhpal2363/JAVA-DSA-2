@@ -1,5 +1,6 @@
 package LinkedList;
 
+//  Interview Question on LinkedList
 public class Questions {
     public class Node {
         int data;
