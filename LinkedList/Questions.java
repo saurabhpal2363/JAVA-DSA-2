@@ -176,16 +176,91 @@ public class Questions {
         head = prev;
     }
 
+    public void deleteNthFromEnd(int n) {
+        // Caculate size
+        int sz = 0;
+        Node temp = head;
+        while(temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+
+        if(n == sz) {
+            head = head.next;     // if remove head
+            return;
+        }
+
+        int i = 1;
+        int iToFind = sz - n;
+        Node prev = head;
+
+        while(i < iToFind) {
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        return;
+    }
+
+    // Slow-Fast Technique
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+        }
+
+        return slow;    // slow is my midNode
+    }
+
+    public boolean checkPalindrome() {
+        if(head == null || head.next == null) {
+            return true;
+        }
+
+        // Step1. Find mid
+        Node midNode = findMid(head);
+
+        // Step2. Reverse 2nd Half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node right = prev;   // Right half head
+        Node left = head;
+
+        // Step3. Check 1st half == 2nd half 
+        while(right != null) {
+            if(right.data != left.data) {
+                return false;
+            }
+
+            right = right.next;
+            left = left.next;
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
         Questions ll = new Questions();
         ll.addLast(1);
         ll.addLast(2);
-        ll.addLast(3);
-        ll.addLast(4);
+        ll.addLast(2);
+        ll.addLast(1);
+
         ll.printList();
 
-        // System.out.println("Element found at idx: " + ll.recSearch(40));
-        ll.reverse();
-        ll.printList();
+        System.out.println(ll.checkPalindrome());
     }
 }
