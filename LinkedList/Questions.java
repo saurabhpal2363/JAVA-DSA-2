@@ -204,7 +204,7 @@ public class Questions {
     }
 
     // Slow-Fast Technique
-    public Node findMid(Node head) {  // O(n/2)
+    public Node findMid(Node head) {
         Node slow = head;
         Node fast = head;
 
@@ -216,7 +216,7 @@ public class Questions {
         return slow;    // slow is my midNode
     }
 
-    public boolean checkPalindrome() {  // O(n)
+    public boolean checkPalindrome() {
         if(head == null || head.next == null) {
             return true;
         }
