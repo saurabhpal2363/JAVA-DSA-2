@@ -186,7 +186,7 @@ public class Questions {
         }
 
         if(n == sz) {
-            head = head.next;     // if remove head
+            head = head.next;   // if remove head
             return;
         }
 
