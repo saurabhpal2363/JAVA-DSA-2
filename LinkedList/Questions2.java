@@ -124,7 +124,7 @@ public class Questions2 {
         System.out.println("null");
     }
 
-    // Floyd's Cycle finding Algorithm 
+    // Floyd's Cycle finding Algorithm.
     public static boolean isCycle() {
         Node slow = head;
         Node fast = head;
@@ -161,7 +161,7 @@ public class Questions2 {
             return;
         }
 
-        // Find meeting Point
+        // Find meeting Point.
         slow = head;
         Node prev = null;
         
