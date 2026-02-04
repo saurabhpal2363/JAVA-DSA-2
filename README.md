@@ -1,2 +1,2 @@
 # JAVA-DSA-2
-DSA with all funandamental concepts...
+DSA
