@@ -1,5 +1,7 @@
 package LinkedList;
 
+
+// It is a type of LinkedList which has two pointers that point to the previous or next Node 
 public class DoubleLL {
     public class Node {
         int data;
