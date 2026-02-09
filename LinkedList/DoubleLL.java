@@ -1,7 +1,6 @@
 package LinkedList;
 
 
-// It is a type of LinkedList which has two pointers that point to the previous or next Node 
 public class DoubleLL {
     public class Node {
         int data;
@@ -99,6 +98,23 @@ public class DoubleLL {
         System.out.println("null");
     }
 
+    public void reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
+
     public static void main(String[] args) {
         DoubleLL dll = new DoubleLL();
         dll.addFirst(3);
@@ -108,10 +124,13 @@ public class DoubleLL {
         dll.addLast(8);
 
         dll.print();
-        System.out.println(dll.size);
+        // System.out.println(dll.size);
 
-        dll.removeLast();
+        // dll.removeLast();
+        // dll.print();
+        // System.out.println(dll.size);
+
+        dll.reverse();
         dll.print();
-        System.out.println(dll.size);
     }
 }
