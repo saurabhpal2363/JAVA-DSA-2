@@ -2,7 +2,7 @@ package Stack;
 import java.util.Stack;
 
 public class Question1 {
-    // Stock span Problem
+    // Ques. Stock span Problem
     public static void stockSpan(int stocks[], int span[]) {
         Stack<Integer> s = new Stack<>();
         span[0] = 1;
