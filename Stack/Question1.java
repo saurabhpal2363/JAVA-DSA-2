@@ -23,13 +23,41 @@ public class Question1 {
             s.push(i);
         }
     }
-    public static void main(String[] args) {
-        int stocks[] = {100, 80, 60, 70, 60, 85, 100};
-        int span[] = new int[stocks.length];
-        stockSpan(stocks, span);
 
-        for(int i=0; i<span.length; i++) {
-            System.out.print(span[i] + " ");
+    // Ques. Next Greater Element
+    public static void nextGreater(int arr[], int nxtGreater[]) {
+        Stack<Integer> s = new Stack<>();
+
+        for(int i=arr.length-1; i>=0; i--) {
+            while(!s.isEmpty() && arr[i]>arr[s.peek()]) {
+                s.pop();
+            }
+
+            if(s.isEmpty()) {
+                nxtGreater[i] = -1;
+            } else {
+                nxtGreater[i] = arr[s.peek()];
+            }
+
+            s.push(i);
+        }
+    }
+    public static void main(String[] args) {
+        // int stocks[] = {100, 80, 60, 70, 60, 85, 100};
+        // int span[] = new int[stocks.length];
+        // stockSpan(stocks, span);
+
+        // for(int i=0; i<span.length; i++) {
+        //     System.out.print(span[i] + " ");
+        // }
+
+        int arr[] = {6, 8, 0, 1, 3};
+        int nxtGreater[] = new int[arr.length];
+
+        nextGreater(arr, nxtGreater);
+
+        for(int i=0; i<nxtGreater.length; i++) {
+            System.out.print(nxtGreater[i] + " ");
         }
     }
 }
