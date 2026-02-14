@@ -24,7 +24,7 @@ public class Question1 {
         }
     }
 
-    // Ques. Next Greater Element
+    // Ques. Next Greater Element       O(n)
     public static void nextGreater(int arr[], int nxtGreater[]) {
         Stack<Integer> s = new Stack<>();
 
@@ -42,6 +42,63 @@ public class Question1 {
             s.push(i);
         }
     }
+
+    // Ques. Valid Paranthesis      O(n)
+    public static boolean isValid(String str) {
+        Stack<Character> s = new Stack<>();
+
+        for(int i=0; i<str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if(ch == '(' || ch == '{' || ch == '[') {
+                s.push(ch);
+            } else {
+                if(s.isEmpty()) {
+                    return false;
+                }
+
+                if((s.peek() == '(' && ch == ')') || (s.peek() == '{' && ch == '}') || (s.peek() == '[' && ch == ']')) {
+                    s.pop();
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        if(s.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Ques. Check Duplicate Paranthesis        O(n)
+    public static boolean isDuplicate(String str) {
+        Stack<Character> s = new Stack<>();
+
+        for(int i=0; i<str.length(); i++) {
+            int count = 0;
+            char ch = str.charAt(i);
+
+            if(ch == ')') {
+                while(s.peek() != '(') {
+                    s.pop();
+                    count++;
+                }
+
+                if(count == 0) {
+                    return true;
+                } else {
+                    s.pop();
+                }
+            } else {
+                s.push(ch);
+            }
+        }
+
+        return false;
+    } 
+
     public static void main(String[] args) {
         // int stocks[] = {100, 80, 60, 70, 60, 85, 100};
         // int span[] = new int[stocks.length];
@@ -51,13 +108,16 @@ public class Question1 {
         //     System.out.print(span[i] + " ");
         // }
 
-        int arr[] = {6, 8, 0, 1, 3};
-        int nxtGreater[] = new int[arr.length];
+        // int arr[] = {6, 8, 0, 1, 3};
+        // int nxtGreater[] = new int[arr.length];
 
-        nextGreater(arr, nxtGreater);
+        // nextGreater(arr, nxtGreater);
 
-        for(int i=0; i<nxtGreater.length; i++) {
-            System.out.print(nxtGreater[i] + " ");
-        }
+        // for(int i=0; i<nxtGreater.length; i++) {
+        //     System.out.print(nxtGreater[i] + " ");
+        // }
+
+        String str = "(a+b)";
+        System.out.println(isDuplicate(str));
     }
 }
