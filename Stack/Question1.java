@@ -105,7 +105,7 @@ public class Question1 {
         int nsr[] = new int[arr.length];
         int nsl[] = new int[arr.length];
 
-        // Next smaller right
+        // Next smaller right       O(n)
         Stack<Integer> s = new Stack<>();
         for(int i=arr.length-1; i>=0; i--) {
             while(!s.isEmpty() && arr[i] <= arr[s.peek()]) {
@@ -121,7 +121,7 @@ public class Question1 {
             s.push(i);
         }
 
-        // Next smaller right 
+        // Next smaller right       O(n)
         s = new Stack<>();
         for(int i=0; i<arr.length; i++) {
             while(!s.isEmpty() && arr[i] <= arr[s.peek()]) {
@@ -137,7 +137,7 @@ public class Question1 {
             s.push(i);
         }
 
-        // Claculate Area 
+        // Claculate Area       O(n)
         for(int i=0; i<arr.length; i++) {
             int height = arr[i];
             int width = nsr[i] - nsl[i] - 1;
