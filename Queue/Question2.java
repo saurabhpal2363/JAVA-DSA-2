@@ -42,6 +42,19 @@ public class Question2 {
         }
     }
 
+    // Ques. Queue Reversal 
+    public static void reverse(Queue<Integer> q) {
+        Stack<Integer> s = new Stack<>();
+
+        while(!q.isEmpty()) {
+            s.push(q.remove());
+        }
+
+        while(!s.isEmpty()) {
+            q.add(s.pop());
+        }
+    }
+
     public static void main(String[] args) {
         // String str = "aabccxb";
         // printNonRepeating(str);
@@ -58,10 +71,15 @@ public class Question2 {
         q.add(9);
         q.add(10);
 
-        interLeave(q);
+        // interLeave(q);
+        reverse(q);
+
+        // while(!q.isEmpty()) {
+        //     System.out.print(q.remove() + " ");
+        // }
 
         while(!q.isEmpty()) {
-            System.out.print(q.remove() + " ");
+            System.out.println(q.remove());
         }
     }
 }
