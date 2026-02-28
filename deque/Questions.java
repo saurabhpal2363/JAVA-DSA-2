@@ -25,7 +25,7 @@ public class Questions {
         Deque<Integer> d = new LinkedList<>();
 
         public void add(int data) {
-            d.addLast();
+            d.addLast(data);
         }
 
         public int remove() {
