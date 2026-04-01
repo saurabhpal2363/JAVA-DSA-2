@@ -2,7 +2,7 @@ package GreedyAlgorithms;
 
 import java.util.*;
 
-public class JobSequence {
+public class JobSequence {      // O(n)
     static class Job {
         int deadline;
         int profit;
