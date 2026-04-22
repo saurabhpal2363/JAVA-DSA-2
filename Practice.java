@@ -1,30 +1,46 @@
-import java.util.ArrayList;
-import java.util.Collections;
+class Practice {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
 
-public class Practice {
-
-    public static void findLonely(ArrayList<Integer> arr) {
-        Collections.sort(arr);
-
-        ArrayList<Integer> list  = new ArrayList<>();
-        for(int i=1; i<arr.size()-1; i++) {
-            if(arr.get(i)-1 == arr.get(i-1) || arr.get(i)+1 == arr.get(i+1) || arr.get(i) == arr.get(i-1)) {
-                continue;
-            } else {
-                list.add(arr.get(i));
-            }
+        Node(int data) {
+            this.data = data;
         }
-
-        System.out.println(list);
     }
 
-    public static void main(String[] args) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(1);
-        arr.add(3);
-        arr.add(5);
-        arr.add(3);
+    public static Node insert(Node root, int val) {
+        if(root == null) {
+            root = new Node(val);
+            return root;
+        }
 
-        findLonely(arr);
+        if(root.data > val) {
+            root.left = insert(root.left, val);
+        } else {
+            root.right = insert(root.right, val);
+        }
+
+        return root;
+    }
+
+    public static void inorder(Node root) {
+        if(root == null) {
+            return;
+        }
+
+        inorder(root.left);
+        System.out.print(root.data + " ");
+        inorder(root.right);
+    }
+    public static void main(String args[]){
+        int arr[] = {6, 9, 3, 4, 5, 7, 2, 1, 10, 8};
+        Node root = null;
+
+        for(int i=0; i<arr.length; i++) {
+            root = insert(root, arr[i]);
+        }
+
+        inorder(root);
     }
 }
