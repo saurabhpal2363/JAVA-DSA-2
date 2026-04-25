@@ -1,5 +1,7 @@
 package BinarySearchTree;
 
+import java.util.*;
+
 public class BST {
     static class Node {
         int data;
@@ -38,57 +40,6 @@ public class BST {
         inorder(root.right);
     }
 
-    public static boolean search(Node root, int key) {      // O(H)
-        if(root == null) {
-            return false;
-        }
-
-        if(root.data == key) {
-            return true;
-        }
-
-        if(root.data > key) {
-            return search(root.left, key);
-        } else {
-            return search(root.right, key);
-        }
-    }
-
-    public static Node findInorderSuccessor(Node root) {
-        while(root.left != null) {
-            root = root.left;
-        }
-
-        return root;
-    }
-
-    public static Node delete(Node root, int val) {
-        if(root.data > val) {
-            root.left = delete(root.left, val);
-        } else if(root.data < val) {
-            root.right = delete(root.right, val);
-        } else {    // Voila case 
-            // Case 1 - Leaf Node
-            if(root.left == null && root.right == null) {
-                return null;
-            }
-
-            // Case 2 - Single Child 
-            if(root.left == null) {
-                return root.right;
-            } else if(root.right == null) {
-                return root.left;
-            }
-
-            // Case 3 - Both Children
-            Node IS = findInorderSuccessor(root.right);
-            root.data = IS.data;
-            root.right = delete(root.right, IS.data);
-        }
-
-        return root;
-    }
-
     public static void main(String[] args) {
         int values[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
         Node root = null;
@@ -97,9 +48,6 @@ public class BST {
             root = insert(root, values[i]);
         }
 
-        inorder(root);
-        root = delete(root, 5);
-        System.out.println();
         inorder(root);
     }
 }
