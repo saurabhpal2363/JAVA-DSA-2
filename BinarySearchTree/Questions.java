@@ -30,7 +30,7 @@ public class Questions {
         return root;
     }
 
-    public static void inorder(Node root) {
+    public static void inorder(Node root) {     // O(n)
         if(root == null) {
             return;
         }
