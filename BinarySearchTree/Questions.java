@@ -48,7 +48,7 @@ public class Questions {
         System.out.print(root.data + " ");
         preorder(root.left);
         preorder(root.right);
-    } 
+    }
 
     public static boolean search(Node root, int key) {      // O(H)
         if(root == null) {
