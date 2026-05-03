@@ -19,7 +19,7 @@ public class SlidingWindow {
         }
     }
     
-    public static void main(String[] args) {    // O(nlogk)
+    public static void main(String[] args) {     // O(nlogk)
         int arr[] = {1, 3, -1, -3, 5, 3, 6, 7};
         int k = 3;
         int res[] = new int[arr.length-k+1];
