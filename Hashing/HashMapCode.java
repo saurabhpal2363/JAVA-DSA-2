@@ -83,6 +83,59 @@ public class HashMapCode {
                 rehash();
             }
         }
+
+        public boolean containsKey(K key) {
+            int bi = hashFunction(key);      // 0 to 3
+            int di = SearchInLL(key, bi);       // Valid : -1
+
+            if(di != -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public V remove(K key) {
+            int bi = hashFunction(key);      // 0 to 3
+            int di = SearchInLL(key, bi);       // Valid : -1
+
+            if(di != -1) {
+                Node node = buckets[bi].remove(di);
+                n--;
+                return node.value;
+            } else {
+                return null;
+            }
+        }
+
+        public V get(K key) {
+            int bi = hashFunction(key);      // 0 to 3
+            int di = SearchInLL(key, bi);       // Valid : -1
+
+            if(di != -1) {
+                Node node = buckets[bi].get(di);
+                return node.value;
+            } else {
+                return null;
+            }
+        }
+
+        public ArrayList<K> keySet() {
+            ArrayList<K> keys = new ArrayList<>();
+
+            for(int i=0; i<buckets.length; i++) {
+                LinkedList<Node> ll = buckets[i];
+                for(Node node : ll) {
+                    keys.add(node.key);
+                }
+            }
+
+            return keys;
+        }
+
+        public boolean isEmpty() {
+            return n == 0;
+        }
     }
 
     public static void main(String[] args) {
@@ -92,6 +145,11 @@ public class HashMapCode {
         map.put("China", 150);
         map.put("Nepal", 5);
 
-        
+        ArrayList<String> keys = map.keySet();
+        for(String key : keys) {
+            System.out.println(key);
+        }
+
+        System.out.println(map.get("India"));
     }
 }
