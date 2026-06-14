@@ -1,68 +1,176 @@
-class Solution {
-    public static void decOrd(int n) {
-        if(n == 1) {
-            System.out.print(n);
-            return;
+public class Solution {
+    public static class Node {
+        int data;
+        Node next;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
         }
-        System.out.print(n + " ");
-        decOrd(n-1);
     }
 
-    public static void incOrd(int n) {
-        if(n == 1) {
-            System.out.print(n + " ");
-            return;
-        }
-        incOrd(n-1);
-        System.out.print(n + " ");
-    }
+    public static Node head;
+    public static Node tail;
+    public static int size;
 
-    public static int fact(int n) {
-        if(n == 0) {
-            return 1;
-        }
-
-        int fnm1 = fact(n-1);
-        int fn = n * fnm1;
-
-        return fn;
-    }
-
-    public static int fibbo(int n) {
-        if(n == 0 || n == 1) {
-            return n;
-        }
-
-        int fnm1 = fibbo(n-1);
-        int fnm2 = fibbo(n-2);
-
-        int fn = fnm1 + fnm2;
-
-        return fn;
-    }
-
-    public static void changeArr(int arr[], int i, int v) {
-        if(i == arr.length) {
-            printArr(arr);
+    public void addFirst(int data) {
+        Node newNode = new Node(data);
+        size++;
+        if(head == null) {
+            head = tail = newNode;
             return;
         }
 
-        arr[i] = v;
-        changeArr(arr, i+1, v+1);
-        arr[i] = arr[i] - 2;
+        newNode.next = head;
+        head = newNode;
     }
 
-    public static void printArr(int arr[]) {
-        for(int i=0; i<arr.length; i++) {
-            System.out.print(arr[i] + " ");
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        size++;
+
+        if(head == null) {
+            head = tail = newNode;
+            return;
         }
 
-        System.out.println();
+        tail.next = newNode;
+        tail = newNode;
     }
 
-    public static void main(String []args){
-        int arr[] = new int[5];
-        changeArr(arr, 0, 1);
-        printArr(arr);
+    public void add(int idx, int data) {
+        if(idx == 0) {
+            addFirst(data);
+            return;
+        }
+        
+        Node newNode = new Node(data);
+        size++;
+
+        Node temp = head;
+
+        int i=0;
+        while(i != idx-1) {
+            temp = temp.next;
+            i++;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+    public int removeFirst() {
+        if(size == 0) {
+            System.out.println("LL is empty");
+            
+            return Integer.MIN_VALUE;
+        } else if(size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size--;
+            
+            return val;
+        }
+
+        int val = head.data;
+        head = head.next;
+        size--;
+
+        return val;
+    }
+
+    public int removeLast() {
+        if(size == 0) {
+            System.out.println("LL is empty");
+            return Integer.MAX_VALUE;
+        } else if(size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size--;
+            return val;
+        }
+
+        Node prev = head;
+        
+        for(int i=0; i<size-2; i++) {
+            prev = prev.next;
+        }
+
+        int val = tail.data;
+        prev.next = null;
+        tail = prev;
+        size--;
+
+        return val;
+    }
+
+    public static int iterSearch(int val) {
+        if(size == 0) {
+            return -1;
+        } 
+
+        Node temp = head;
+        int idx = 1;
+
+        while(temp != null) {
+            if(temp.data == val) {
+                return idx;
+            }
+
+            temp = temp.next;
+            idx++;
+        }
+
+        return -1;
+    }
+
+    public int helper(int key, Node temp) {
+        if(temp == null) {
+            return -1;
+        }
+
+        if(temp.data == key) {
+            return 0;
+        }
+
+        int res = helper(key, temp.next);
+
+        if(res == -1) {
+            return res;
+        } else {
+            return res+1;
+        }
+    }
+
+    public int recSearch(int key) {
+        return helper(key, head);
+    }
+
+    public void print() {
+        if(head == null) {
+            System.out.println("LL is empty");
+            return;
+        }
+        Node temp = head;
+
+        while(temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("null");
+
+    }
+
+    public static void main(String[] args) {
+        Solution ll = new Solution();
+        ll.addFirst(2);
+        ll.addFirst(1);
+        ll.addLast(3);
+        ll.addLast(4);
+
+        ll.print();
+
+        System.out.println("Element found at idx: " + ll.recSearch(1));
     }
 }
