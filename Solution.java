@@ -146,6 +146,46 @@ public class Solution {
         return helper(key, head);
     }
 
+    public void reverse() {
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
+
+    public void rmvFrLst(int n) {
+        int sz = 0;
+        Node temp = head;
+        while(temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+
+        if(sz == n) {
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        int iToFind = sz-n;
+        Node prev = head;
+
+        while(iToFind > i) {
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+    }
+
     public void print() {
         if(head == null) {
             System.out.println("LL is empty");
@@ -171,6 +211,10 @@ public class Solution {
 
         ll.print();
 
-        System.out.println("Element found at idx: " + ll.recSearch(1));
+        // ll.reverse();
+        // ll.print();
+
+        ll.rmvFrLst(2);
+        ll.print();
     }
 }
